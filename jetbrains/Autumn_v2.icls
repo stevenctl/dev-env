@@ -1,9 +1,9 @@
 <scheme name="Autumn v2" version="142" parent_scheme="Darcula">
   <metaInfo>
-    <property name="created">2022-10-17T09:48:47</property>
-    <property name="ide">Python</property>
-    <property name="ideVersion">2022.2.0.0</property>
-    <property name="modified">2022-10-17T09:48:52</property>
+    <property name="created">2022-10-17T11:38:14</property>
+    <property name="ide">GoLand</property>
+    <property name="ideVersion">2022.2.2.0.0</property>
+    <property name="modified">2022-10-17T11:38:21</property>
     <property name="originalScheme">Autumn v2</property>
   </metaInfo>
   <colors>
@@ -77,7 +77,7 @@
     <option name="ScrollBar.Transparent.hoverTrackColor" value="e6e6e65a" />
     <option name="ScrollBar.Transparent.thumbBorderColor" value="0" />
     <option name="ScrollBar.Transparent.thumbColor" value="ffffffbe" />
-    <option name="ScrollBar.Transparent.trackColor" value="e6e6e60" />
+    <option name="ScrollBar.Transparent.trackColor" value="6e6e60" />
     <option name="ScrollBar.background" value="0" />
     <option name="ScrollBar.hoverThumbBorderColor" value="0" />
     <option name="ScrollBar.hoverThumbColor" value="ffffffbe" />
@@ -343,6 +343,11 @@
         <option name="FOREGROUND" value="cfba8b" />
       </value>
     </option>
+    <option name="DEFAULT_INTERFACE_NAME">
+      <value>
+        <option name="FOREGROUND" value="a5d27c" />
+      </value>
+    </option>
     <option name="DEFAULT_INVALID_STRING_ESCAPE">
       <value>
         <option name="FOREGROUND" value="72a59e" />
@@ -498,41 +503,71 @@
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
-    <option name="GO_COMMENT_REFERENCE">
+    <option name="GO_BUILTIN_CONSTANT">
       <value>
-        <option name="FOREGROUND" value="7ec3e6" />
+        <option name="FOREGROUND" value="efae5e" />
         <option name="FONT_TYPE" value="2" />
       </value>
     </option>
-    <option name="GO_EXPORTED_FUNCTION_CALL">
+    <option name="GO_BUILTIN_FUNCTION_CALL">
       <value>
-        <option name="FOREGROUND" value="edb98e" />
+        <option name="FOREGROUND" value="efae5e" />
       </value>
     </option>
-    <option name="GO_LOCAL_FUNCTION_CALL">
+    <option name="GO_BUILTIN_TYPE_REFERENCE">
       <value>
-        <option name="FOREGROUND" value="edb98e" />
+        <option name="FOREGROUND" value="9396c0" />
       </value>
     </option>
+    <option name="GO_BUILTIN_VARIABLE">
+      <value>
+        <option name="FOREGROUND" value="efae5e" />
+      </value>
+    </option>
+    <option name="GO_COMMENT_REFERENCE">
+      <value>
+        <option name="FONT_TYPE" value="2" />
+      </value>
+    </option>
+    <option name="GO_EXPORTED_FUNCTION_CALL" baseAttributes="DEFAULT_FUNCTION_CALL" />
+    <option name="GO_LOCAL_CONSTANT">
+      <value>
+        <option name="FOREGROUND" value="a5d27c" />
+        <option name="FONT_TYPE" value="2" />
+      </value>
+    </option>
+    <option name="GO_LOCAL_FUNCTION_CALL" baseAttributes="DEFAULT_FUNCTION_CALL" />
     <option name="GO_METHOD_RECEIVER">
       <value>
-        <option name="FOREGROUND" value="3db8ff" />
+        <option name="FOREGROUND" value="86c1b9" />
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
     <option name="GO_PACKAGE">
       <value>
-        <option name="FOREGROUND" value="a8cc5c" />
+        <option name="FOREGROUND" value="cfba8b" />
+      </value>
+    </option>
+    <option name="GO_PACKAGE_EXPORTED_CONSTANT">
+      <value>
+        <option name="FOREGROUND" value="a5d27c" />
+        <option name="FONT_TYPE" value="2" />
+      </value>
+    </option>
+    <option name="GO_PACKAGE_LOCAL_CONSTANT">
+      <value>
+        <option name="FOREGROUND" value="a5d27c" />
+        <option name="FONT_TYPE" value="2" />
       </value>
     </option>
     <option name="GO_SHADOWING_VARIABLE">
       <value>
-        <option name="FOREGROUND" value="38d996" />
+        <option name="FOREGROUND" value="cfba8b" />
       </value>
     </option>
     <option name="GO_TYPE_REFERENCE">
       <value>
-        <option name="FOREGROUND" value="73d0e6" />
+        <option name="FOREGROUND" value="f3f2cc" />
       </value>
     </option>
     <option name="GRID_NULL_VALUE">
@@ -541,7 +576,7 @@
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
-    <option name="HAML_RUBY_CODE" baseAttributes="INJECTED_LANGUAGE_FRAGMENT" />
+    <option name="HAML_RUBY_CODE" baseAttributes="" />
     <option name="HTML_ATTRIBUTE_NAME">
       <value>
         <option name="FOREGROUND" value="ffffff" />
@@ -740,8 +775,7 @@
         <option name="EFFECT_TYPE" value="2" />
       </value>
     </option>
-    <option name="PROPERTIES.INVALID_STRING_ESCAPE" baseAttributes="DEFAULT_INVALID_STRING_ESCAPE" />
-    <option name="PY.BUILTIN_NAME" baseAttributes="DEFAULT_PREDEFINED_SYMBOL" />
+    <option name="PROPERTIES.INVALID_STRING_ESCAPE" baseAttributes="" />
     <option name="PY.PREDEFINED_DEFINITION">
       <value>
         <option name="FOREGROUND" value="9396c0" />
