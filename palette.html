@@ -1,0 +1,242 @@
+<html>
+
+<div id="container" style="height: 100%; align-items: stretch; display: flex; flex-direction: column-reverse;">
+
+</div>
+<div id="snackbar">Copied <span id="copied-col">PLACEHOLDER</span> to clipboard...</div>
+
+<script>
+
+
+    const palette = {
+        my_black: {
+            hex: "#212121",
+            description: "Cursorline"
+        },
+        my_gray0: {
+            hex: "#262626",
+            description: "Default Background"
+        },
+        my_gray1: {
+            hex: "#2b2b2b",
+            description: "Ruler"
+        },
+        my_gray2: {
+            hex: "#323232",
+            description: "Lighter Background (Used for status bars, line number and folding marks)"
+        },
+        my_gray3: {
+            hex: "#505050",
+            description: "Selection Background"
+        },
+        my_gray4: {
+            hex: "#7c7c7c",
+            description: "Comments, Invisibles, Line Highlighting"
+        },
+        my_gray5: {
+            hex: "#a8a8a8",
+            description: "Dark Foreground (Used for status bars)"
+        },
+        my_gray6: {
+            hex: "#c0c0c0",
+            description: "Light Foreground (Not often used)"
+        },
+        my_white: {
+            hex: "#F3F2CC",
+            description: `Default Foreground, Caret, Delimiters, Operators
+            Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted
+            Classes, Markup Bold, Search Text Background`
+        },
+        my_brown: {
+            hex: "#cfba8b",
+            description: "Member variables, Quotes"
+        },
+        my_lavender: {
+            hex: "#9396C0",
+            description: "Special symbols (self, __x__)"
+        },
+        my_turquoise2: {
+            hex: "#72a59e",
+            description: "URL"
+        },
+        my_turquoise: {
+            hex: "#86c1b9",
+            description: "Support, Regular Expressions, Escape Characters"
+        },
+        my_green2: {
+            hex: "#99be70",
+            description: "Darker version for comments/docs"
+        },
+        my_green: {
+            hex: "#A5D27C",
+            description: "Strings, Inherited Class, Markup Code, Diff Inserted"
+        },
+        my_yellow2: {
+            hex: "#ffff9f",
+            description: "Debug, Info"
+        },
+        my_yellow1: {
+            hex: "#FAD566",
+            description: "Functions, Methods, Attribute IDs, Headings"
+
+        },
+        my_orange: {
+            hex: "#EFAE5E",
+            description: "Predefined Symbol"
+        },
+        my_orange2: {
+            hex: "#F3A948",
+            description: "Light Error"
+        },
+        my_red: {
+            hex: "#F05E48",
+            description: "Keywords, Storage, Selector, Diff Changed"
+        },
+    }
+
+    const rgb2hex = (rgb) => `#${rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/).slice(1).map(n => parseInt(n, 10).toString(16).padStart(2, '0')).join('')}`.toUpperCase()
+
+    const lumFromHex = (hex) => {
+        const c = hex.substring(1);   // strip #
+        const rgb = parseInt(c, 16);  // convert rrggbb to decimal
+        const r = (rgb >> 16) & 0xff; // extract red
+        const g = (rgb >> 8) & 0xff;  // extract green
+        const b = (rgb >> 0) & 0xff;  // extract blue
+
+        return 0.2126 * r + 0.7152 * g + 0.0722 * b; // per ITU-R BT.709
+
+    }
+
+    addEventListener('load', function () {
+        document.getElementById("container").innerHTML = Object.values(palette)
+            .map(({hex, ...rest}) => ({hex: hex.toUpperCase(), ...rest}))
+            .map(({hex, description}) => `
+         <div onclick="copyColor(this)" class="hoverable" style="background-color: ${hex}; color: ${lumFromHex(hex) < 80 ? '#F3F2CC' : 'black'}">
+            <p style="flex: 1">${hex}</p>
+            <pre style="flex: 1">${description}</pre>
+         </div>
+        `).join("\n");
+
+    })
+
+    function showSnackbar(color) {
+        // Get the snackbar DIV
+        const sb = document.getElementById("snackbar");
+        const colText = document.getElementById("copied-col");
+
+        // Add the "show" class to DIV
+        colText.innerText = color;
+        sb.className = "show";
+
+        // After 3 seconds, remove the show class from DIV
+        setTimeout(function () {
+            sb.className = sb.className.replace("show", "");
+        }, 3000);
+    }
+
+    function copyColor(e) {
+        const col = rgb2hex(getComputedStyle(e).backgroundColor);
+        navigator.clipboard.writeText(col);
+        showSnackbar(col);
+    }
+</script>
+
+<style>
+    #snackbar {
+        visibility: hidden; /* Hidden by default. Visible on click */
+        min-width: 250px; /* Set a default minimum width */
+        margin-left: -125px; /* Divide value of min-width by 2 */
+        background-color: #333; /* Black background color */
+        color: #fff; /* White text color */
+        text-align: center; /* Centered text */
+        border-radius: 2px; /* Rounded borders */
+        padding: 16px; /* Padding */
+        position: fixed; /* Sit on top of the screen */
+        z-index: 1; /* Add a z-index if needed */
+        left: 50%; /* Center the snackbar */
+        bottom: 30px; /* 30px from the bottom */
+    }
+
+    /* Show the snackbar when clicking on a button (class added with JavaScript) */
+    #snackbar.show {
+        visibility: visible; /* Show the snackbar */
+        /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+        However, delay the fade out process for 2.5 seconds */
+        -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    }
+
+    /* Animations to fade the snackbar in and out */
+    @-webkit-keyframes fadein {
+        from {
+            bottom: 0;
+            opacity: 0;
+        }
+        to {
+            bottom: 30px;
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadein {
+        from {
+            bottom: 0;
+            opacity: 0;
+        }
+        to {
+            bottom: 30px;
+            opacity: 1;
+        }
+    }
+
+    @-webkit-keyframes fadeout {
+        from {
+            bottom: 30px;
+            opacity: 1;
+        }
+        to {
+            bottom: 0;
+            opacity: 0;
+        }
+    }
+
+    @keyframes fadeout {
+        from {
+            bottom: 30px;
+            opacity: 1;
+        }
+        to {
+            bottom: 0;
+            opacity: 0;
+        }
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: sans-serif;
+        font-weight: bolder;
+    }
+
+    .hoverable {
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+        text-align: center;
+        text-justify: distribute-center-last;
+
+        align-items: center;
+        justify-content: center;
+        color: black;
+    }
+
+    .hoverable:hover {
+        opacity: .7;
+
+    }
+
+</style>
+
+
+</html>
