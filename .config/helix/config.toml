@@ -1,0 +1,25 @@
+theme = "autumn_night"
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block" # "underline"
+select = "block"
+
+[keys.normal]
+g = { a = "code_action" } # Maps `ga` to show possible code actions
+"ret" = ["move_line_down", "goto_first_nonwhitespace"] # Maps the enter key to move to start of next line
+X = "extend_line_above"
+A-l = "extend_to_line_end"
+A-h = "extend_to_line_start"
+tab = "indent"
+S-tab = "unindent"
+"}" = "jump_forward"
+"{" = "jump_backward"
+"home" = "goto_first_nonwhitespace"
+# Can't break that mac muscle memory
+"A-h" = "move_prev_word_start"
+"A-l" = "move_next_word_end"
+[keys.select]
+"A-h" = "extend_prev_word_start"
+"A-l" = "extend_next_word_end"
+"home" = "goto_first_nonwhitespace"
